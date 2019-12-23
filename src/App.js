@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+import Main from './Main';
+import VideoPlayer from './VideoPlayer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
+const App = () => (
+  <Provider store = {createStore(reducers,composeWithDevTools())}>
+    <Router>
+      <Switch>
+        <Route path="/watch/:id" component={VideoPlayer} />
+        <Route path="/watch" component={VideoPlayer} />
+        <Route path="/results" component={Main} />
+        <Route path="/" component={Main} />
+      </Switch>
+    </Router>
+  </Provider>
+)
 export default App;
