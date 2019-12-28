@@ -13,7 +13,7 @@ import reducers from './reducers';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 const App = () => (
-  <Provider store = {createStore(reducers,composeWithDevTools())}>
+  <Provider store = {createStore(reducers, composeWithDevTools())}>
     <Router>
       <Switch>
         <Route path="/watch/:id" component={VideoPlayer} />

@@ -9,6 +9,8 @@ const VideoLsitItem=props=>{
     channel:props.snippet.channelTitle,
     id:props.id.videoId,
   }
+
+
 return (
   <div>
     <li onClick={()=>props.onVideoSelect(VideoData.id)}>
@@ -18,6 +20,5 @@ return (
     </li>
   </div>
 )
-
 }
 export default VideoLsitItem;

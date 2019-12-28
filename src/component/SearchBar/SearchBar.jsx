@@ -5,8 +5,8 @@ import {updateQuery} from '../../actions';
 
 
 const SearchBar =props =>{
-  const handEnter=search=>e=>{
-    if(e.key === 'Enter'){
+  const handEnter=search => e =>{
+    if(e.keyCode === 13){
       search(e.target.value);
     }
   }
@@ -18,21 +18,25 @@ const SearchBar =props =>{
       ref={ref=>(input=ref)}
       type="search"
       defaultValue={ props.query || '' }
-      placeholder="검색어를 입력하세요."
+      placeholder='검색어를 입력하세요'
       // onChange={e=>props.onSearchVideos(e.target.value)}
-      onKeyPress={handEnter(props.onSearchVideos)}/>
+      onKeyUp={handEnter(props.onSearchVideos)}
+      />
       <button onClick={()=>props.onSearchVideos(input.value)}>
       </button>
       <hr/>
     </div>
   )
 }
+
 function mapStateToProps(state){
   return {
     query:state.videos.query
   }
 }
+
 function mapDispatchToProps(dispatch){
   return bindActionCreators({updateQuery},dispatch)
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);
